@@ -24,12 +24,17 @@ const CardEvent = ({ category, title, start, end, address }) => {
   return (
 
     <div className="card-event">
-      <div className="info-background">
-        <small className='category'>{category}</small>
-        <h3 className='title'>{title}</h3>
-        <div className='adress-group'>
-          <MdLocationOn className="adress-img"/>
-          <p className="address">{address}</p>
+        
+            <div className="info-background">
+            <div>
+              <small className='category'>{category}</small>
+              <h3 className='title'>{title}</h3>
+          </div>
+          <div>
+            <div className='adress-group'>
+              <MdLocationOn className="adress-img"/>
+              <p className="address">{address}</p>
+          </div>
         </div>
       </div>
 
