@@ -1,8 +1,11 @@
 import { useState, useEffect} from 'react'
 import './App.css'
 import axios, { Axios } from 'axios'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
-const accessToken = process.env.REACT_APP_API_TOKEN
+const accessToken = import.meta.env.VITE_API_TOKEN
 
 function App() {
 
@@ -16,7 +19,7 @@ function App() {
         `https://api.predicthq.com/v1/places/?q=Lyon,France`,
         {
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
+            'Authorization': accessToken,
           },
         }
       )
@@ -32,6 +35,8 @@ function App() {
         
     }, [])
 
+    console.log(location);
+
   //fetch all events
   useEffect(()=>{
     if(load) {
@@ -40,7 +45,7 @@ function App() {
         `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}`,
         {
           headers: {
-            'Authorization': 'Bearer dgAymuvY_lHHAtMWAWpwkjWcULBFrLHHLgm4-PAI',
+            'Authorization': accessToken,
           },
         }
       )
