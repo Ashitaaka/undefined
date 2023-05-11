@@ -1,0 +1,86 @@
+.card-event{
+    background-color: white;
+    height: 200px;
+    width: 500px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--text-font);
+    box-shadow: 5px 5px 17px 0px #0000007a;
+    border-radius: 1em;
+}
+
+.info-background{
+    padding-left: 1.3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    display: block;
+    position: relative;
+    flex: 1;
+}
+
+.date-background{
+    background-color: var(--primary-color-light);
+    display: flex;
+    align-items: center;
+    border-radius: 0  1em 1em 0;
+    padding: 1em;
+}
+
+/* section info*/
+.category{
+   
+    display: inline-block;
+    background-color: var(--primary-color-regular);
+    color: white;
+    border-radius: 1em;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 0.7em;
+    margin-bottom: 3em;
+}
+
+.title{
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-bottom: 1em;
+}
+
+.adress-group{
+    display: flex;
+    position: absolute;
+    bottom: 1em;
+}
+
+.address{
+    font-size: 0.8em;
+    color: var(--primary-color-light);
+    padding-top: 1em;
+}
+
+.adress-img{
+    height: 2em;
+    width: 2em;
+    margin-right: 0.3em;
+}
+
+/*section date*/
+
+.date{
+    padding: 1em;
+}
+
+.date-day{
+    font-family: var(--title-font);
+    font-size: 3em;
+    text-align: center;
+}
+
+.date-month{
+    font-family: var(--text-font);
+    font-size: 1em;
+}
+
+.quote{
+    font-size: 1em;
+}

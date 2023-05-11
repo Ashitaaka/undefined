@@ -26,8 +26,6 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     .catch((err)=>{
       console.log(err)
     })
-      
-  }, [])
 
   const allCategories = [...new Set(cityEvents.map(cat => cat.category))];
 
