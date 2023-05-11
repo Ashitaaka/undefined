@@ -1,7 +1,6 @@
 import React from 'react'
 import './CardEvent.css'
-import localisation from '../assets/images/localisation-32px.png'
-
+import { MdLocationOn } from 'react-icons/md'
 // function pour formater la date reçus
 const formatDateNumber = (dateString) => {
   const optionsNumber = {day: 'numeric' };
@@ -29,7 +28,7 @@ const CardEvent = ({ category, title, start, end, address }) => {
         <small className='category'>{category}</small>
         <h3 className='title'>{title}</h3>
         <div className='adress-group'>
-          <img className='adress-img' src={localisation}/>
+          <MdLocationOn className="adress-img"/>
           <p className="address">{address}</p>
         </div>
       </div>
@@ -39,10 +38,10 @@ const CardEvent = ({ category, title, start, end, address }) => {
           <p className='date-day'>{formattedStartDateNumber}</p>
           <p className='date-month'>{formattedStartDateMonth}</p>
         </div>
-        {formattedStartDateNumber === formattedEndDateNumber
+        {formattedStartDateNumber !== formattedEndDateNumber
         ? <p></p>
         : <p className='quote'>-</p> }
-        {formattedStartDateNumber === formattedEndDateNumber
+        {formattedStartDateNumber !== formattedEndDateNumber
         ? <p className='end-date'></p>
         :  <div className='date'>
             <p className='date-day'>{formattedEndDateNumber}</p>
