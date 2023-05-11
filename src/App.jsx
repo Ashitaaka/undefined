@@ -14,6 +14,8 @@ function App() {
     const [load, setLoad] = useState(false)
     const [cityEvents, setCityEvents] = useState([])
     const [loadCityEvents, setLoadCityEvents] = useState(false)
+    const [filteredCat, setFilteredCat] = useState(null)
+    const [selectedCat, setSelectedCat] = useState(null)
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -56,6 +58,7 @@ function App() {
       .then(data => {
         console.log(data.results)
         setCityEvents(data.results);
+        setFilteredCat(data.results);
         setLoadCityEvents(true);
       })
       .catch((err)=>{
@@ -66,7 +69,7 @@ function App() {
 
   return (
       <div>
-        <CityEvents cityEvents={cityEvents}/>
+        <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} />
       </div>
   )
 }
