@@ -4,6 +4,7 @@ import axios, { Axios } from 'axios'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import CityEvents from './components/CityEvents';
 
 const accessToken = import.meta.env.VITE_API_TOKEN
 
@@ -11,6 +12,8 @@ function App() {
 
     const [location, setLocation] = useState([])
     const [load, setLoad] = useState(false)
+    const [cityEvents, setCityEvents] = useState([])
+    const [loadCityEvents, setLoadCityEvents] = useState(false)
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -50,7 +53,11 @@ function App() {
         }
       )
       .then(res => res.data)
-      .then(data => console.log(data.results))
+      .then(data => {
+        console.log(data.results)
+        setCityEvents(data.results);
+        setLoadCityEvents(true);
+      })
       .catch((err)=>{
         console.log(err)
       })
@@ -59,7 +66,7 @@ function App() {
 
   return (
       <div>
-
+        <CityEvents cityEvents={cityEvents}/>
       </div>
   )
 }
