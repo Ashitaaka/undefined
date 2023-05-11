@@ -1,0 +1,36 @@
+.search-bar{
+    background-color: var(--primary-color-very-light);
+    opacity: .9;
+    width: 75%;
+    padding: 2em 3em;
+    border-radius: .8em;
+    display: flex;
+    gap: .8em;
+}
+
+.caption-container{
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    margin: .5em;
+}
+
+.country-selection,
+.city-selection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.city-selection input::placeholder{
+    font-size: 14px;
+    color : rgba(0, 0, 0, 0.4);
+}
+
+.city-selection input{
+    width: 300px;
+    padding: 1em;
+    flex: 1;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+}
