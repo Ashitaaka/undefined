@@ -2,6 +2,8 @@ import { useState, useEffect} from 'react'
 import './App.css'
 import axios, { Axios } from 'axios'
 
+const accessToken = process.env.REACT_APP_API_TOKEN
+
 function App() {
 
     const [location, setLocation] = useState([])
@@ -14,7 +16,7 @@ function App() {
         `https://api.predicthq.com/v1/places/?q=Lyon,France`,
         {
           headers: {
-            'Authorization': 'Bearer dgAymuvY_lHHAtMWAWpwkjWcULBFrLHHLgm4-PAI',
+            'Authorization': `Bearer ${accessToken}`,
           },
         }
       )
