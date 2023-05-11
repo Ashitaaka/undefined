@@ -1,8 +1,8 @@
 .card-event{
     background-color: white;
-    height: 200px;
-    width: 500px;
-    margin: 10px;
+    height: 10em;
+    width: 30em;
+    margin-bottom: 0.8em;
     display: flex;
     justify-content: space-between;
     font-family: var(--text-font);
@@ -12,7 +12,7 @@
 
 .info-background{
     padding-left: 1.3em;
-    padding-top: 1em;
+    padding-top: 1.2em;
     padding-bottom: 1em;
     display: block;
     position: relative;
@@ -29,45 +29,46 @@
 
 /* section info*/
 .category{
-   
     display: inline-block;
     background-color: var(--primary-color-regular);
     color: white;
     border-radius: 1em;
     text-align: center;
-    padding: 0.5em;
-    font-size: 0.7em;
-    margin-bottom: 3em;
+    padding: 0.5em 0.9em;
+    font-size: 0.6em;
+    margin-bottom: 1em;
 }
 
 .title{
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: normal;
     margin-bottom: 1em;
 }
 
 .adress-group{
+    width: 50%;
     display: flex;
+    align-items: center;
     position: absolute;
     bottom: 1em;
 }
 
 .address{
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: var(--primary-color-light);
     padding-top: 1em;
 }
 
 .adress-img{
-    height: 2em;
-    width: 2em;
+    height: 3em;
+    width: 3em;
     margin-right: 0.3em;
 }
 
 /*section date*/
 
 .date{
-    padding: 1em;
+    padding: 0.7em;
 }
 
 .date-day{
@@ -78,9 +79,9 @@
 
 .date-month{
     font-family: var(--text-font);
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .quote{
-    font-size: 1em;
+    font-size: 0.8em;
 }

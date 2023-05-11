@@ -1,6 +1,4 @@
 .events-page {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -28,6 +26,7 @@
 .events-page-titles>h1 {
     font-family: var(--title-font);
     font-size: 5em;
+    font-weight: 100;
     color: #fff;
 }
 .events-page-titles>h2 {
