@@ -45,7 +45,7 @@ function App() {
     if(load) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}`,
+        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20`,
         {
           headers: {
             'Authorization': accessToken,

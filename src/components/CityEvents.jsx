@@ -7,12 +7,14 @@ const accessUnsplashToken = import.meta.env.VITE_UNSPLASH_TOKEN
 
 const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) => {
   
+  // Fetch unsplash images depending on the params
+
   const [cityImage, setCityImage] = useState(null) 
 
   useEffect(()=>{
     axios
     .get(
-      `https://api.unsplash.com/search/photos?page=1&query=lyon`,
+      `https://api.unsplash.com/search/photos?page=1&query=Lyon,France`,
       {
         headers: {
           'Authorization': accessUnsplashToken,
@@ -28,8 +30,9 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     })
   }, [])
 
+  // Creation of a new table to  get a category table from the events of the city
   const allCategories = [...new Set(cityEvents.map(cat => cat.category))];
-
+  // Filters depending on the category
   const handleFilter = (category) => {
     if (category === "Select All") {
       setFilteredCat(cityEvents);
