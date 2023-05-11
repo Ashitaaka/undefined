@@ -26,6 +26,7 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     .catch((err)=>{
       console.log(err)
     })
+  }, [])
 
   const allCategories = [...new Set(cityEvents.map(cat => cat.category))];
 
@@ -64,11 +65,11 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     </div>
     
       <div className='events-cards-container'>
-      {filteredCat && filteredCat.map(event => (
-        <CardEvent key={event.id} category={event.category} title={event.title} start={event.start} end={event.end} address={event.entities[0].formatted_address}/>
-      ))}
+        {filteredCat && filteredCat.map(event => (
+          <CardEvent key={event.id} category={event.category} title={event.title} start={event.start} end={event.end} address={event.entities[0].formatted_address}/>
+        ))}
+      </div>
     </div>
-  </div>
   );
 };
 
