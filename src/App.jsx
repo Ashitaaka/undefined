@@ -1,6 +1,10 @@
 import { useState, useEffect} from 'react'
 import './App.css'
 import axios, { Axios } from 'axios'
+
+//importing components
+import SearchBar from './components/SearchBar'
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,6 +16,8 @@ function App() {
 
     const [location, setLocation] = useState([])
     const [load, setLoad] = useState(false)
+    const [selectedCountry, setSelectedCountry] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
     const [cityEvents, setCityEvents] = useState([])
     const [loadCityEvents, setLoadCityEvents] = useState(false)
     const [filteredCat, setFilteredCat] = useState(null)
@@ -19,25 +25,28 @@ function App() {
 
     // Fetch the city to get Location
     useEffect(()=>{
+      
+      if(selectedCity !== "" && selectedCountry !== ""){
       axios
-      .get(
-        `https://api.predicthq.com/v1/places/?q=Lyon,France`,
-        {
-          headers: {
-            'Authorization': accessToken,
-          },
-        }
-      )
-      .then(res => res.data)
-      .then(data => {
-        setLocation(data.results[0].location);
-        setLoad(true);
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-        
-    }, [])
+        .get(
+          `https://api.predicthq.com/v1/places/?q=${selectedCity},${selectedCountry}`,
+          {
+            headers: {
+              'Authorization': accessToken,
+            },
+          }
+        )
+        .then(res => res.data)
+        .then(data => {
+          setLocation(data.results[0].location);
+          setLoad(true);
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+      } 
+    }, [selectedCity])
+
 
 
   //fetch all events
@@ -64,7 +73,22 @@ function App() {
     }  
   }, [location])
 
+
+
   return (
+      <div className='home-page'>
+        <div className="container">
+          <div className='title'>
+            <h1 className='home-title'>Undefined</h1>
+            <h2 className='home-subtitle'>Travel</h2>
+          </div>
+          <SearchBar 
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
+          />
+        </div>
       <div>
         <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} />
       </div>
