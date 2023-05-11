@@ -5,9 +5,7 @@ const CityEvents = ({cityEvents}) => {
     <div className='events-page'>
       
       {cityEvents.map(el => ( 
-        <div className='events-cards-container'>
-          <CardEvent category={el.category} title={el.title} start={el.start} end={el.end} address={el.entities[0].formatted_address}/>
-        </div>
+          <CardEvent key={el.id} category={el.category} title={el.title} start={el.start} end={el.end} address={el.entities[0].formatted_address}/>
         ))}
      
 

@@ -28,7 +28,6 @@ function App() {
       )
       .then(res => res.data)
       .then(data => {
-        console.log(data.results)
         setLocation(data.results[0].location);
         setLoad(true);
       })
@@ -38,7 +37,6 @@ function App() {
         
     }, [])
 
-    console.log(location);
 
   //fetch all events
   useEffect(()=>{
@@ -54,7 +52,6 @@ function App() {
       )
       .then(res => res.data)
       .then(data => {
-        console.log(data.results)
         setCityEvents(data.results);
         setLoadCityEvents(true);
       })
