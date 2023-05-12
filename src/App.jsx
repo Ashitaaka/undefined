@@ -88,7 +88,6 @@ function App() {
         <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} loadCityEvents={loadCityEvents} />
 
       </div>
-      </div>
   )
 }
 
