@@ -16,11 +16,13 @@ function App() {
     const [load, setLoad] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
-    const [cityEvents, setCityEvents] = useState([]);
-    const [loadCityEvents, setLoadCityEvents] = useState(false);
-    const [filteredCat, setFilteredCat] = useState([]);
-    const [selectedCat, setSelectedCat] = useState(null);
-
+    const [cityEvents, setCityEvents] = useState([])
+    const [loadCityEvents, setLoadCityEvents] = useState(false)
+    const [filteredCat, setFilteredCat] = useState([])
+    const [selectedCat, setSelectedCat] = useState(null)
+    const [arrivalDate, setArrivalDate] = useState("");
+    const [returnDate, setReturnDate] = useState("");
+    const [cityField, setCityField] = useState("");
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -44,15 +46,15 @@ function App() {
           console.log(err)
         })
       } 
-    }, [selectedCity, selectedCountry])
+    }, [selectedCity, arrivalDate && returnDate])
 
 
   //fetch all events
   useEffect(()=>{
-    if(load) {
+    if(load && arrivalDate && returnDate) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20`,
+        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20?active.gte=${arrivalDate}&active.lte=${returnDate}`,
         {
           headers: {
             'Authorization': accessToken,
@@ -64,6 +66,7 @@ function App() {
         setCityEvents(data.results);
         setFilteredCat(data.results);
         setLoadCityEvents(true);
+        setCityField("");
       })
       .catch((err)=>{
         console.log(err)
@@ -95,12 +98,24 @@ function App() {
         })
     }
   }, [loadCityEvents, selectedCity, accessUnsplashToken])
-console.log(cityImage);
-console.log(selectedCity);
 
   return (
-    <div className='home-page' style={cityImage && selectedCity ? {backgroundImage: `url("${cityImage.full}")`} 
+      <div className='home-page' style={cityImage && selectedCity ? {backgroundImage: `url("${cityImage.full}")`} 
     : {backgroundImage: `url("https://www.pixel4k.com/wp-content/uploads/2019/09/etretat-normandie-france_1569187797.jpg.webp")`}}>
+      <div className={selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate? 'loading page-active' :'loading page-hide' }>
+          <div className="letter-holder">
+            <div className="l-1 letter">L</div>
+            <div className="l-2 letter">o</div>
+            <div className="l-3 letter">a</div>
+            <div className="l-4 letter">d</div>
+            <div className="l-5 letter">i</div>
+            <div className="l-6 letter">n</div>
+            <div className="l-7 letter">g</div>
+            <div className="l-8 letter">.</div>
+            <div className="l-9 letter">.</div>
+            <div className="l-10 letter">.</div>
+          </div>
+        </div>
         <div className={filteredCat.length === 0 ? "container-center" : "container" } >
           <div className='title'>
             <h1 className='home-title'>{!selectedCity ? "Undefined" : selectedCity}</h1>
@@ -111,6 +126,10 @@ console.log(selectedCity);
           setSelectedCountry={setSelectedCountry}
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
+          setArrivalDate={setArrivalDate}
+          setReturnDate={setReturnDate}
+          cityField={cityField}
+          setCityField={setCityField}
           />
         </div>
 
