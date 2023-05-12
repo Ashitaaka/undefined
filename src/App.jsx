@@ -23,6 +23,8 @@ function App() {
     const [arrivalDate, setArrivalDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
     const [cityField, setCityField] = useState("");
+    const [cityTitle, setCityTitle] = useState("");
+    const [countryTitle, setCountryTitle] = useState("");
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -66,7 +68,9 @@ function App() {
         setCityEvents(data.results);
         setFilteredCat(data.results);
         setLoadCityEvents(true);
-        setCityField("");
+        setCityTitle(cityField);
+        setCountryTitle(selectedCountry.label);
+        // setCityField("");
       })
       .catch((err)=>{
         console.log(err)
@@ -120,8 +124,8 @@ function App() {
         </div>
         <div className={filteredCat.length === 0 ? "container-center" : "container" } >
           <div className='title'>
-            <h1 className='home-title'>{!selectedCity ? "Undefined" : selectedCity}</h1>
-            <h2 className='home-subtitle'>{!selectedCountry ? "Travel" : selectedCountry.label}</h2>
+            <h1 className='home-title'>{cityTitle==="" ? "Undefined" : cityTitle}</h1>
+            <h2 className='home-subtitle'>{countryTitle==="" ? "Travel" : countryTitle}</h2>
           </div>
           <SearchBar 
           selectedCountry={selectedCountry}
