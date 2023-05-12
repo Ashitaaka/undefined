@@ -11,9 +11,15 @@ const formatDateNumber = (dateString) => {
 };
 
 const formatDateMonth = (dateString) => {
-  const optionsMonth = {month: 'long' };
+  const optionsMonth = {year: 'numeric'};
   const date = new Date(dateString.replace('Z', ''));
   return date.toLocaleDateString('en-EN', optionsMonth);
+};
+
+const formatDateYears = (dateString) => {
+  const optionsYears = {month: 'long' };
+  const date = new Date(dateString.replace('Z', ''));
+  return date.toLocaleDateString('en-EN', optionsYears);
 };
 
 const CardEvent = ({ category, title, start, end, address }) => {
@@ -22,6 +28,7 @@ const CardEvent = ({ category, title, start, end, address }) => {
   const formattedStartDateMonth = formatDateMonth(start);
   const formattedEndDateNumber = formatDateNumber(end);
   const formattedEndDateMonth = formatDateMonth(end);
+  const formatttedDateYear = formatDateYears(start)
 
   return (
 
@@ -44,6 +51,7 @@ const CardEvent = ({ category, title, start, end, address }) => {
       <div className={category !== "severe-weather" ? "date-background" : "date-background-danger"}>
         <div className='date'>
           <p className='date-day'>{formattedStartDateNumber}</p>
+          <p>{formatttedDateYear}</p>
           <p className='date-month'>{formattedStartDateMonth}</p>
         </div>
         {formattedStartDateNumber === formattedEndDateNumber
@@ -53,8 +61,10 @@ const CardEvent = ({ category, title, start, end, address }) => {
         ? <p className='end-date'></p>
         :  <div className='date'>
             <p className='date-day'>{formattedEndDateNumber}</p>
+            <p>{formatttedDateYear}</p>
             <p className='date-month'>{formattedEndDateMonth}</p>
             </div>
+            
         }
       </div>
 

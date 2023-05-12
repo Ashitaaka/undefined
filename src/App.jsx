@@ -56,7 +56,7 @@ function App() {
     if(load && arrivalDate && returnDate) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events?within=40km@${location[1]},${location[0]}&active.gte=${arrivalDate}&active.lte=${returnDate}&limit=50`,
+        `https://api.predicthq.com/v1/events?category=conferences,expos,concerts,festivals,performing-arts,community,sports&within=40km@${location[1]},${location[0]}&active.gte=${arrivalDate}&active.lte=${returnDate}&limit=50`,
         {
           headers: {
             'Authorization': accessToken,
@@ -108,8 +108,7 @@ function App() {
   
 
   return (
-      <div className='home-page' style={cityImage && selectedCity ? {backgroundImage: `url("${cityImage.full}")`} 
-    : {backgroundImage: `url("https://www.pixel4k.com/wp-content/uploads/2019/09/etretat-normandie-france_1569187797.jpg.webp")`}}>
+      <div className='home-page'>
       <div className={(selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate) && cityImage === null? 'loading page-active' :'loading page-hide' }>
           <div className="letter-holder">
             <div className="l-1 letter">L</div>
@@ -124,7 +123,11 @@ function App() {
             <div className="l-10 letter">.</div>
           </div>
         </div>
-        <div className={filteredCat.length === 0 ? "container-center" : "container" } >
+        <div 
+        className={filteredCat.length === 0 ? "container-center" : "container" } 
+        style={cityImage && selectedCity ? {backgroundImage: `url("${cityImage.full}")`} 
+        : {backgroundImage: `url("https://www.pixel4k.com/wp-content/uploads/2019/09/etretat-normandie-france_1569187797.jpg.webp")`}}
+        >
           <div className='title'>
             <h1 className='home-title'>{cityTitle==="" ? "Undefined" : cityTitle}</h1>
             <h2 className='home-subtitle'>{countryTitle==="" ? "Travel" : countryTitle}</h2>

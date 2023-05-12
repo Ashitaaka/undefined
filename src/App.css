@@ -63,7 +63,7 @@
 .page-hide{
   visibility: hidden;
   opacity: 0;
-  
+  position: absolute;
 }
 
 .letter-holder {
@@ -132,22 +132,21 @@ html{
 }
 
 .home-page{
-  height: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.25);
-  background-position: center;
-  background-size: cover;
-  background-blend-mode: multiply;
+  background-color: var(--primary-color-very-light);
   
 }
 
+.container-center {
+  position: relative;
+  height: 100vh;
+}
 
-.container-center, .container{
-  height: 100%;
+.container-center, 
+.container{
   width: 100%; 
   padding: 3em;
   display: flex;
@@ -155,12 +154,15 @@ html{
   justify-content: center;
   align-items: center;
   gap:2em;
-}
-.container-center {
-  position: relative;
-  top:-5em;
+  background-color: rgba(0, 0, 0, 0.25);
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
 }
 
+.container{
+  height: 85vh;
+}
 
 
 .home-page .title{
@@ -182,4 +184,10 @@ h2{
   font-size: 2em;
   letter-spacing: .7em;
   line-height: .85em;
+}
+
+@media screen and (max-width:660px){
+  .container{
+    height: 100vh;
+  }
 }
