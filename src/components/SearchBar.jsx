@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 //importing components
 import CountrySelect from '.././components/CountrySelecter'
 import countries from '../datas/CountryDatas.js' //Countries list
+import SearchField from './SearchField'
 
 //importing assets
 import { BiMapPin } from 'react-icons/bi'
@@ -10,7 +14,6 @@ import { BiMapPin } from 'react-icons/bi'
 //importing CSS
 import '.././css/SearchBar.css'
 import axios from 'axios'
-import SearchField from './SearchField'
 
 const accessCityToken = import.meta.env.VITE_CITIES_API_TOKEN
 
@@ -26,13 +29,9 @@ const SearchBar = ({
     const [citiesOfCountry, setCitiesOfCountry] = useState([])
     const [citiesNames, setCitiesNames] = useState([]);
     
-    
-
-    // selectedCountry && console.log(selectedCountry);
-    // selectedCountry && console.log(selectedCountry.code);
 
     useEffect(()=>{
-        if(selectedCountry){
+        if(selectedCountry !== ""){
         const config = {
             method: 'get',
             url: `https://api.countrystatecity.in/v1/countries/${selectedCountry.code}/cities`,
@@ -49,12 +48,18 @@ const SearchBar = ({
     }, [selectedCountry]);
 
 
-
     const handlerCityValue = (e) =>{
+        const tata = e.target.value
         setCityField(e.target.value)
-        setCitiesOfCountry(allCities.filter(city => city.name.toLowerCase().startsWith(cityField.toLowerCase())).map((city)=> city.name))
-        setCitiesNames(citiesOfCountry.filter((el, index) => index<=10))
+
+        const toto = allCities
+            .filter(city => city.name.toLowerCase().startsWith(tata.toLowerCase()))
+            .map((city)=> city.name)
+        setCitiesOfCountry(toto)
+
+        setCitiesNames(toto.filter((el, index) => index<=10 && tata))
     }
+
 
     const handlerCitySelect = (city) => {
         setSelectedCity(city);
@@ -62,8 +67,9 @@ const SearchBar = ({
         setCitiesNames([]);
     }
 
-    console.log(selectedCity);
-    console.log(selectedCountry.label);
+    const handlerArrivalDate = (newValue) =>{
+        console.log(newValue);
+    }
 
   return (
     <div className='search-bar'>
@@ -74,9 +80,9 @@ const SearchBar = ({
             </div>
             <CountrySelect 
                 datas={countries} 
-                label="Choose a country"
                 selectedCountry={selectedCountry}
                 setSelectedCountry={setSelectedCountry}
+                setAllCities={setAllCities}
             />
         </div>
         <div className="city-selection">
@@ -89,19 +95,30 @@ const SearchBar = ({
                 setCityField={setCityField} 
                 handlerCityValue={handlerCityValue} 
             />
-            {citiesNames !=="" &&
-                <ul>
+            {citiesNames.length > 0 &&
+                <ul className='dropdown-menu'>
                 {citiesNames.map((city, index) =>(
                     <li 
                         key={index} 
-                        onClick={() =>{handlerCitySelect(city)}}
+                        onClick={() => handlerCitySelect(city)}
                     >
                         {city}
                     </li>
                 ))}
                 </ul>
-            }   
-           
+            }    
+        </div>
+        <div className="dates-selection">
+            <div className="caption-container">
+                <BiMapPin />
+                <p className='caption'>Arrival date</p>
+            </div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker 
+                    sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
+                    onChange={handlerArrivalDate}
+                />
+            </LocalizationProvider>   
         </div>
     </div>
   )

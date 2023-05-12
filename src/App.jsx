@@ -5,7 +5,6 @@ import axios, { Axios } from 'axios'
 
 //importing components
 import SearchBar from './components/SearchBar'
-
 import CityEvents from './components/CityEvents';
 
 const accessToken = import.meta.env.VITE_API_TOKEN
@@ -47,7 +46,6 @@ function App() {
     }, [selectedCity])
 
 
-    console.log(loadCityEvents)
   //fetch all events
   useEffect(()=>{
     if(load) {
@@ -72,8 +70,6 @@ function App() {
     }  
   }, [location])
 
-
-
   return (
       <div className='home-page'>
         <div className="container">
@@ -92,7 +88,7 @@ function App() {
         <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} loadCityEvents={loadCityEvents} />
 
       </div>
-      
+      </div>
   )
 }
 

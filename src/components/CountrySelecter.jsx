@@ -2,14 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useState } from 'react';
 
-export default function CountrySelect({datas, label, selectedCountry, setSelectedCountry}) {
+export default function CountrySelect({datas, setSelectedCountry, setAllCities}) {
 
-  const [search, setSearch] = useState();
   const handleAutocompleteChange = (event, newValue) => {
     if (newValue === null) {
       setSelectedCountry("");
+      setAllCities([])
     } else {
       setSelectedCountry(newValue);
     }
