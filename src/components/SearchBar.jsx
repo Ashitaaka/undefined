@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 //importing components
 import CountrySelect from '.././components/CountrySelecter'
 import countries from '../datas/CountryDatas.js' //Countries list
+import SearchField from './SearchField'
 
 //importing assets
 import { BiMapPin } from 'react-icons/bi'
@@ -10,7 +14,6 @@ import { BiMapPin } from 'react-icons/bi'
 //importing CSS
 import '.././css/SearchBar.css'
 import axios from 'axios'
-import SearchField from './SearchField'
 
 const accessCityToken = import.meta.env.VITE_CITIES_API_TOKEN
 
@@ -26,10 +29,6 @@ const SearchBar = ({
     const [citiesOfCountry, setCitiesOfCountry] = useState([])
     const [citiesNames, setCitiesNames] = useState([]);
     
-    
-
-    // selectedCountry && console.log(selectedCountry);
-    // selectedCountry && console.log(selectedCountry.code);
 
     useEffect(()=>{
         if(selectedCountry !== ""){
@@ -49,8 +48,6 @@ const SearchBar = ({
     }, [selectedCountry]);
 
 
-    // console.log(allCities);
-
     const handlerCityValue = (e) =>{
         const tata = e.target.value
         setCityField(e.target.value)
@@ -63,14 +60,16 @@ const SearchBar = ({
         setCitiesNames(toto.filter((el, index) => index<=10 && tata))
     }
 
+
     const handlerCitySelect = (city) => {
         setSelectedCity(city);
         setCityField("");
         setCitiesNames([]);
     }
 
-    // console.log(selectedCity);
-    // console.log(selectedCountry.label);
+    const handlerArrivalDate = (newValue) =>{
+        console.log(newValue);
+    }
 
   return (
     <div className='search-bar'>
@@ -107,8 +106,19 @@ const SearchBar = ({
                     </li>
                 ))}
                 </ul>
-            }   
-           
+            }    
+        </div>
+        <div className="dates-selection">
+            <div className="caption-container">
+                <BiMapPin />
+                <p className='caption'>Arrival date</p>
+            </div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker 
+                    sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
+                    onChange={handlerArrivalDate}
+                />
+            </LocalizationProvider>   
         </div>
     </div>
   )
