@@ -65,6 +65,7 @@
     border-radius: 0 0 4px 4px;
     padding: 1em;
     width: 100%;
+    z-index: 500;
 }
 
 .city-selection li{
@@ -77,7 +78,7 @@
 }
 
 /*----- MEDIA QUERIES (1080px) -----*/
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1080px) {
     .search-bar{
         width: 85%;
         flex-direction: column;
