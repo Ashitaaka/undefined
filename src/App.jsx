@@ -19,8 +19,9 @@ function App() {
     const [loadCityEvents, setLoadCityEvents] = useState(false)
     const [filteredCat, setFilteredCat] = useState([])
     const [selectedCat, setSelectedCat] = useState(null)
-   
-
+    const [arrivalDate, setArrivalDate] = useState("");
+    const [returnDate, setReturnDate] = useState("");
+    const [cityField, setCityField] = useState("");
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -44,15 +45,15 @@ function App() {
           console.log(err)
         })
       } 
-    }, [selectedCity])
+    }, [selectedCity, arrivalDate && returnDate])
 
 
   //fetch all events
   useEffect(()=>{
-    if(load) {
+    if(load && arrivalDate && returnDate) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20`,
+        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20?active.gte=${arrivalDate}&active.lte=${returnDate}`,
         {
           headers: {
             'Authorization': accessToken,
@@ -64,11 +65,13 @@ function App() {
         setCityEvents(data.results);
         setFilteredCat(data.results);
         setLoadCityEvents(true);
+        setCityField("");
       })
       .catch((err)=>{
         console.log(err)
       })
     }  
+    
   }, [location])
 
   return (
@@ -97,6 +100,10 @@ function App() {
           setSelectedCountry={setSelectedCountry}
           selectedCity={selectedCity}
           setSelectedCity={setSelectedCity}
+          setArrivalDate={setArrivalDate}
+          setReturnDate={setReturnDate}
+          cityField={cityField}
+          setCityField={setCityField}
           />
         </div>
 

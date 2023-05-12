@@ -10,6 +10,7 @@ import SearchField from './SearchField'
 
 //importing assets
 import { BiMapPin } from 'react-icons/bi'
+import { MdDateRange } from 'react-icons/md'
 
 //importing CSS
 import '.././css/SearchBar.css'
@@ -21,10 +22,13 @@ const SearchBar = ({
     selectedCity,
     selectedCountry,
     setSelectedCountry,
-    setSelectedCity 
+    setSelectedCity,
+    setArrivalDate,
+    setReturnDate,
+    cityField,
+    setCityField
 }) => {
 
-    const [cityField, setCityField] = useState("");
     const [allCities, setAllCities] = useState([]);
     const [citiesOfCountry, setCitiesOfCountry] = useState([])
     const [citiesNames, setCitiesNames] = useState([]);
@@ -60,15 +64,20 @@ const SearchBar = ({
         setCitiesNames(toto.filter((el, index) => index<=10 && tata))
     }
 
-
     const handlerCitySelect = (city) => {
         setSelectedCity(city);
-        setCityField("");
+        setCityField(city);
         setCitiesNames([]);
     }
 
     const handlerArrivalDate = (newValue) =>{
-        console.log(newValue);
+        let arrivalDate = newValue.$d
+        setArrivalDate(arrivalDate.toISOString().substring(0, 10));
+    }
+
+    const handlerReturnDate = (newValue) =>{
+        let returnDate = newValue.$d
+        setReturnDate(returnDate.toISOString().substring(0, 10)); 
     }
 
   return (
@@ -110,13 +119,25 @@ const SearchBar = ({
         </div>
         <div className="dates-selection">
             <div className="caption-container">
-                <BiMapPin />
+                <MdDateRange />
                 <p className='caption'>Arrival date</p>
             </div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker 
                     sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
                     onChange={handlerArrivalDate}
+                />
+            </LocalizationProvider>   
+        </div>
+        <div className="dates-selection">
+            <div className="caption-container">
+                <MdDateRange />
+                <p className='caption'>Return date</p>
+            </div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker 
+                    sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
+                    onChange={handlerReturnDate}
                 />
             </LocalizationProvider>   
         </div>
