@@ -105,6 +105,7 @@
 .date-month{
     font-family: var(--text-font);
     font-size: 0.8em;
+    text-align: center;
 }
 
 .quote{

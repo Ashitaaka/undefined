@@ -30,12 +30,6 @@ const CardEvent = ({ category, title, start, end, address }) => {
   const formattedEndDateMonth = formatDateMonth(end);
   const formatttedDateYear = formatDateYears(start)
 
-  useEffect(() => {
-  
-    console.log(start)
-  
-  },[address])
-
   return (
 
     
