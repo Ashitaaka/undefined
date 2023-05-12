@@ -41,7 +41,14 @@
   box-sizing: border-box;
 }
 
-.loading-page-active{
+.loading{
+  visibility: visible;
+  opacity : 1;
+  transition: opacity 0.1s;
+}
+
+.page-active{
+  position: absolute;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -49,10 +56,13 @@
   justify-content: center;
   background-color: white;
   background-color: var(--primary-color-light);
+  z-index: 1000;
+  top: 0;
 }
 
-.loading-page-hide{
-  display: none;
+.page-hide{
+  visibility: hidden;
+  opacity: 0;
   
 }
 
