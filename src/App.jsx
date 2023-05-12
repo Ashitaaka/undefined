@@ -71,12 +71,14 @@ function App() {
         console.log(err)
       })
     }  
+  
+  //selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate? 'loading-page-active' :'loading-page-hide' 
     
   }, [location])
 
   return (
       <div className='home-page'>
-      <div className={selectedCity.length > 1 && loadCityEvents === false ? 'loading-page-active' :'loading-page-hide' }>
+      <div className={selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate? 'loading page-active' :'loading page-hide' }>
           <div className="letter-holder">
             <div className="l-1 letter">L</div>
             <div className="l-2 letter">o</div>
