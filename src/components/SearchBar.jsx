@@ -32,7 +32,7 @@ const SearchBar = ({
     // selectedCountry && console.log(selectedCountry.code);
 
     useEffect(()=>{
-        if(selectedCountry){
+        if(selectedCountry !== ""){
         const config = {
             method: 'get',
             url: `https://api.countrystatecity.in/v1/countries/${selectedCountry.code}/cities`,
@@ -49,11 +49,18 @@ const SearchBar = ({
     }, [selectedCountry]);
 
 
+    // console.log(allCities);
 
     const handlerCityValue = (e) =>{
+        const tata = e.target.value
         setCityField(e.target.value)
-        setCitiesOfCountry(allCities.filter(city => city.name.toLowerCase().startsWith(cityField.toLowerCase())).map((city)=> city.name))
-        setCitiesNames(citiesOfCountry.filter((el, index) => index<=10))
+
+        const toto = allCities
+            .filter(city => city.name.toLowerCase().startsWith(tata.toLowerCase()))
+            .map((city)=> city.name)
+        setCitiesOfCountry(toto)
+
+        setCitiesNames(toto.filter((el, index) => index<=10 && tata))
     }
 
     const handlerCitySelect = (city) => {
@@ -62,8 +69,8 @@ const SearchBar = ({
         setCitiesNames([]);
     }
 
-    console.log(selectedCity);
-    console.log(selectedCountry.label);
+    // console.log(selectedCity);
+    // console.log(selectedCountry.label);
 
   return (
     <div className='search-bar'>
@@ -74,9 +81,9 @@ const SearchBar = ({
             </div>
             <CountrySelect 
                 datas={countries} 
-                label="Choose a country"
                 selectedCountry={selectedCountry}
                 setSelectedCountry={setSelectedCountry}
+                setAllCities={setAllCities}
             />
         </div>
         <div className="city-selection">
@@ -89,12 +96,12 @@ const SearchBar = ({
                 setCityField={setCityField} 
                 handlerCityValue={handlerCityValue} 
             />
-            {citiesNames !=="" &&
-                <ul>
+            {citiesNames.length > 0 &&
+                <ul className='dropdown-menu'>
                 {citiesNames.map((city, index) =>(
                     <li 
                         key={index} 
-                        onClick={() =>{handlerCitySelect(city)}}
+                        onClick={() => handlerCitySelect(city)}
                     >
                         {city}
                     </li>

@@ -5,7 +5,6 @@ import axios, { Axios } from 'axios'
 //importing components
 import SearchBar from './components/SearchBar'
 
-
 const accessToken = import.meta.env.VITE_API_TOKEN
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
       } 
     }, [selectedCity])
 
-    console.log(location);
+    // console.log(location);
 
   //fetch all events
   useEffect(()=>{
@@ -61,7 +60,7 @@ function App() {
     }  
   }, [location])
 
-  console.log(location);
+  // console.log(location);
 
   return (
       <div className='home-page'>
