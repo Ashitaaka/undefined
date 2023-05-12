@@ -23,12 +23,6 @@ const CardEvent = ({ category, title, start, end, address }) => {
   const formattedEndDateNumber = formatDateNumber(end);
   const formattedEndDateMonth = formatDateMonth(end);
 
-  useEffect(() => {
-  
-    console.log(address ? address : "non")
-  
-  },[address])
-
   return (
 
     
