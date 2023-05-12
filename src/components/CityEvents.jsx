@@ -5,16 +5,16 @@ import "../css/CityEvents.css"
 
 const accessUnsplashToken = import.meta.env.VITE_UNSPLASH_TOKEN
 
-const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) => {
+const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, selectedCity, selectedCountry, loadCityEvents}) => {
   
   // Fetch unsplash images depending on the params
 
   const [cityImage, setCityImage] = useState(null) 
 
   useEffect(()=>{
-    axios
+    if (loadCityEvents) {axios
     .get(
-      `https://api.unsplash.com/search/photos?page=1&query=Lyon,France`,
+      `https://api.unsplash.com/search/photos?page=1&query=${selectedCity},${selectedCountry}`,
       {
         headers: {
           'Authorization': accessUnsplashToken,
@@ -28,7 +28,8 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     .catch((err)=>{
       console.log(err)
     })
-  }, [])
+  }
+}, [])
 
   // Creation of a new table to  get a category table from the events of the city
   const allCategories = [...new Set(cityEvents.map(cat => cat.category))];
@@ -43,13 +44,16 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
       setSelectedCat(category);
     }
   };
+  console.log(filteredCat)
+
+ 
 
   return (
   <div className='events-page'>
     <div className="events-page-header" style={cityImage && {backgroundImage: `url("${cityImage.full}")`}}>
       <div className="events-page-titles">
-      <h1>Lyon</h1>
-      <h2>France</h2>
+      <h1>{selectedCity}</h1>
+      <h2>{selectedCountry}</h2>
     </div>
       <div className="filter-btn-container">
         <button key="Select All"
@@ -68,9 +72,22 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     </div>
     
       <div className='events-cards-container'>
-        {filteredCat && filteredCat.map(event => (
-          <CardEvent key={event.id} category={event.category} title={event.title} start={event.start} end={event.end} address={event.entities[0].formatted_address}/>
-        ))}
+  
+      {loadCityEvents && filteredCat.map(event => {
+      if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
+        return (
+        <CardEvent
+          key={event.id}
+          category={event.category}
+          title={event.title}
+          start={event.start}
+          end={event.end}
+          address={event.entities[0] && event.entities[0].formatted_address ? event.entities[0].formatted_address : "Address not available"}
+        />
+    );
+  }
+  return null;
+})}
       </div>
     </div>
   );

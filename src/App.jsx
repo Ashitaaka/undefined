@@ -1,4 +1,5 @@
 import { useState, useEffect} from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import axios, { Axios } from 'axios'
 
@@ -16,8 +17,9 @@ function App() {
     const [selectedCity, setSelectedCity] = useState("");
     const [cityEvents, setCityEvents] = useState([])
     const [loadCityEvents, setLoadCityEvents] = useState(false)
-    const [filteredCat, setFilteredCat] = useState(null)
+    const [filteredCat, setFilteredCat] = useState([])
     const [selectedCat, setSelectedCat] = useState(null)
+
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -42,6 +44,7 @@ function App() {
         })
       } 
     }, [selectedCity])
+
 
   //fetch all events
   useEffect(()=>{
@@ -81,11 +84,13 @@ function App() {
           setSelectedCity={setSelectedCity}
           />
         </div>
-      <div>
-        <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} />
+
+        <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} loadCityEvents={loadCityEvents} />
+
       </div>
       </div>
   )
 }
+
 
 export default App
