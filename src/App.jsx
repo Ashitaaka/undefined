@@ -99,10 +99,12 @@ function App() {
     }
   }, [loadCityEvents, selectedCity, accessUnsplashToken])
 
+  
+
   return (
       <div className='home-page' style={cityImage && selectedCity ? {backgroundImage: `url("${cityImage.full}")`} 
     : {backgroundImage: `url("https://www.pixel4k.com/wp-content/uploads/2019/09/etretat-normandie-france_1569187797.jpg.webp")`}}>
-      <div className={selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate? 'loading page-active' :'loading page-hide' }>
+      <div className={(selectedCity.length > 1 && loadCityEvents === false && arrivalDate && returnDate) && cityImage === null? 'loading page-active' :'loading page-hide' }>
           <div className="letter-holder">
             <div className="l-1 letter">L</div>
             <div className="l-2 letter">o</div>
