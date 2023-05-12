@@ -1,11 +1,25 @@
 .search-bar{
     background-color: var(--primary-color-very-light);
     opacity: .9;
-    width: 75%;
+    width: 85%;
     padding: 2em 3em;
     border-radius: .8em;
     display: flex;
     gap: .8em;
+}
+
+.location-container,
+.dates-container{
+    display: flex;
+    gap:.8em;
+}
+
+.location-container{
+    width: 60%;
+}
+
+.dates-container{
+    width: 40%;
 }
 
 .caption-container{
@@ -20,6 +34,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
+}
+
+.dates-selection{
+    width: 100%;
 }
 
 .city-selection input::placeholder{
@@ -32,7 +51,7 @@
 }
 
 .city-selection input{
-    width: 300px;
+    width: 100%;
     padding: 1em;
     flex: 1;
     border-radius: 4px;
@@ -55,4 +74,30 @@
     font-weight: 100;
     color :var(--primary-color);
     margin:.5em;
+}
+
+/*----- MEDIA QUERIES (1080px) -----*/
+@media screen and (max-width:1000px) {
+    .search-bar{
+        width: 85%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location-container{
+        width: 100%;
+    }
+    
+    .dates-container{
+        width: 100%;
+    }
+}
+
+/*----- MEDIA QUERIES (660px) -----*/
+@media screen and (max-width:660px) {
+    .location-container,
+    .dates-container{
+        flex-direction: column;
+        align-items: center;
+    }
 }

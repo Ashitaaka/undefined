@@ -18,7 +18,7 @@ export default function CountrySelect({datas, setSelectedCountry, setAllCities})
   return (
     <Autocomplete
       id="country-select-demo"
-      sx={{ width: 300, '& .MuiAutocomplete-input': { color: '#000', fontSize: 14 }, '.MuiInputBase-root': {backgroundColor: '#fff'} }}
+      sx={{ width: '100%', '& .MuiAutocomplete-input': { color: '#000', fontSize: 14 }, '.MuiInputBase-root': {backgroundColor: '#fff'} }}
       options={datas}
       onChange={handleAutocompleteChange}
       autoHighlight
