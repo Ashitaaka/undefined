@@ -1,4 +1,5 @@
 import { useState, useEffect} from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import axios, { Axios } from 'axios'
 
@@ -89,9 +90,8 @@ function App() {
           setSelectedCity={setSelectedCity}
           />
         </div>
-      <div>
-        <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} />
       </div>
+      
   )
 }
 
