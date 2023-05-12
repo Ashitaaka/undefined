@@ -44,6 +44,9 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
       setSelectedCat(category);
     }
   };
+  console.log(filteredCat)
+
+ 
 
   return (
   <div className='events-page'>
@@ -69,9 +72,22 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
     </div>
     
       <div className='events-cards-container'>
-        {filteredCat && filteredCat.map(event => (
-          <CardEvent key={event.id} category={event.category} title={event.title} start={event.start} end={event.end} address={event.entities[0].formatted_address}/>
-        ))}
+  
+      {loadCityEvents && filteredCat.map(event => {
+      if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
+        return (
+        <CardEvent
+          key={event.id}
+          category={event.category}
+          title={event.title}
+          start={event.start}
+          end={event.end}
+          address={event.entities[0] && event.entities[0].formatted_address ? event.entities[0].formatted_address : "Address not available"}
+        />
+    );
+  }
+  return null;
+})}
       </div>
     </div>
   );

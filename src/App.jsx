@@ -6,9 +6,6 @@ import axios, { Axios } from 'axios'
 //importing components
 import SearchBar from './components/SearchBar'
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import CityEvents from './components/CityEvents';
 
 const accessToken = import.meta.env.VITE_API_TOKEN
@@ -21,8 +18,9 @@ function App() {
     const [selectedCity, setSelectedCity] = useState("");
     const [cityEvents, setCityEvents] = useState([])
     const [loadCityEvents, setLoadCityEvents] = useState(false)
-    const [filteredCat, setFilteredCat] = useState(null)
+    const [filteredCat, setFilteredCat] = useState([])
     const [selectedCat, setSelectedCat] = useState(null)
+
 
     // Fetch the city to get Location
     useEffect(()=>{
@@ -49,7 +47,7 @@ function App() {
     }, [selectedCity])
 
 
-
+    console.log(loadCityEvents)
   //fetch all events
   useEffect(()=>{
     if(load) {
@@ -90,9 +88,13 @@ function App() {
           setSelectedCity={setSelectedCity}
           />
         </div>
+
+        <CityEvents cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} loadCityEvents={loadCityEvents} />
+
       </div>
       
   )
 }
+
 
 export default App

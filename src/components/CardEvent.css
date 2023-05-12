@@ -25,6 +25,19 @@
     padding: 1em;
 }
 
+.date-background-danger{
+    background-color: red;
+    display: flex;
+    align-items: center;
+    border-radius: 0  1em 1em 0;
+    padding: 1em;
+    color: white;
+}
+
+.hide{
+    display: none;
+}
+
 /* section info*/
 .category{
     display: inline-block;
@@ -37,10 +50,23 @@
     margin-bottom: 1em;
 }
 
-.title{
+.category-danger{
+    display: inline-block;
+    background-color: red;
+    color: white;
+    border-radius: 1em;
+    text-align: center;
+    padding: 0.5em 0.9em;
+    font-size: 0.6em;
+    margin-bottom: 1em;
+}
+
+.title-card{
     font-size: 1em;
     font-weight: normal;
+
 }
+
 
 .adress-group{
     display: flex;

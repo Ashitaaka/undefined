@@ -4,6 +4,9 @@
     justify-content: flex-start;
     flex-direction: column;
     background-color: var(--primary-color-very-light);
+    /*position: absolute;
+    width: 100vw;
+    height: 100vh;*/
 }
 .events-page-header {
     width: 100%;
@@ -67,4 +70,5 @@
     justify-content: space-evenly;
     flex-flow: row-reverse wrap-reverse;
     gap: 1em;
+    height: 100vh;
 }
