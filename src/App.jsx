@@ -56,7 +56,7 @@ function App() {
     if(load && arrivalDate && returnDate) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20?active.gte=${returnDate}&active.lte=${arrivalDate}`,
+        `https://api.predicthq.com/v1/events?within=40km@${location[1]},${location[0]}&active.gte=${arrivalDate}&active.lte=${returnDate}&limit=50`,
         {
           headers: {
             'Authorization': accessToken,
@@ -78,6 +78,9 @@ function App() {
     }  
   }, [load, location])
 
+  console.log(cityEvents)
+  console.log(typeof returnDate)
+
   //fetch images
   const [cityImage, setCityImage] = useState(null) 
 
@@ -94,7 +97,6 @@ function App() {
         )
         .then(res => res.data)
         .then(data => {
-          console.log(data.results[0].urls);
           setCityImage(data.results[0].urls);
         })
         .catch((err)=>{

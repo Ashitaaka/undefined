@@ -22,7 +22,6 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
     }
   };
   
-  console.log(selectedCountry);
   return (
   <div className='events-page'>
     <div className="events-page-header" >
