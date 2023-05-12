@@ -5,7 +5,7 @@ import "../css/CityEvents.css"
 
 const accessUnsplashToken = import.meta.env.VITE_UNSPLASH_TOKEN
 
-const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) => {
+const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat,loadCityEvents}) => {
   
   // Fetch unsplash images depending on the params
 
@@ -43,6 +43,9 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
       setSelectedCat(category);
     }
   };
+  console.log(filteredCat)
+
+ 
 
   return (
   <div className='events-page'>
@@ -68,9 +71,22 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat}) =
     </div>
     
       <div className='events-cards-container'>
-        {filteredCat && filteredCat.map(event => (
-          <CardEvent key={event.id} category={event.category} title={event.title} start={event.start} end={event.end} address={event.entities[0].formatted_address}/>
-        ))}
+  
+      {loadCityEvents && filteredCat.map(event => {
+      if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
+        return (
+        <CardEvent
+          key={event.id}
+          category={event.category}
+          title={event.title}
+          start={event.start}
+          end={event.end}
+          address={event.entities[0] && event.entities[0].formatted_address ? event.entities[0].formatted_address : "Address not available"}
+        />
+    );
+  }
+  return null;
+})}
       </div>
     </div>
   );
