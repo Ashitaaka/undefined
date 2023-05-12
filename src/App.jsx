@@ -54,7 +54,7 @@ function App() {
     if(load && arrivalDate && returnDate) {
       axios
       .get(
-        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20?active.gte=${arrivalDate}&active.lte=${returnDate}`,
+        `https://api.predicthq.com/v1/events/?within=2mi@${location[1]},${location[0]}&limit=20?active.gte=${returnDate}&active.lte=${arrivalDate}`,
         {
           headers: {
             'Authorization': accessToken,
@@ -133,7 +133,10 @@ function App() {
           />
         </div>
 
-        <CityEvents selectedCity={selectedCity} selectedCountry={selectedCountry} cityEvents={cityEvents} setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} loadCityEvents={loadCityEvents} />
+        {loadCityEvents ?  
+        <CityEvents selectedCity={selectedCity} selectedCountry={selectedCountry} cityEvents={cityEvents} 
+        setFilteredCat={setFilteredCat} filteredCat={filteredCat} setSelectedCat={setSelectedCat} 
+        loadCityEvents={loadCityEvents} /> : <></>}
 
       </div>
   )

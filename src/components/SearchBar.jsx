@@ -61,7 +61,7 @@ const SearchBar = ({
             .map((city)=> city.name)
         setCitiesOfCountry(toto)
 
-        setCitiesNames(toto.filter((el, index) => index<=10 && tata))
+        setCitiesNames(toto.filter((el, index) => index<=4 && tata))
     }
 
     const handlerCitySelect = (city) => {

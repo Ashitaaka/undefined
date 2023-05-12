@@ -41,24 +41,24 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
         ))}
       </div>
     </div>
-    
-      <div className='events-cards-container'>
-  
-      {loadCityEvents && filteredCat.slice(0).reverse().map(event => {
-      if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
-        return (
-        <CardEvent
-          key={event.id}
-          category={event.category}
-          title={event.title}
-          start={event.start}
-          end={event.end}
-          address={event.entities[0] && event.entities[0].formatted_address ? event.entities[0].formatted_address : "Address not available"}
-        />
-    );
-  }
-  return null;
-})}
+      <div className="events-card-color-bg">
+        <div className='events-cards-container'>
+        {loadCityEvents && filteredCat.slice(0).reverse().map(event => {
+          if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
+          return (
+          <CardEvent
+            key={event.id}
+            category={event.category}
+            title={event.title}
+            start={event.start}
+            end={event.end}
+            address={event.entities[0] && event.entities[0].formatted_address ? event.entities[0].formatted_address : "Address not available"}
+          />
+            );
+          }
+          return null;
+        })}
+          </div>
       </div>
     </div>
   );
