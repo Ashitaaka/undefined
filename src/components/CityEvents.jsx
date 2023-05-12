@@ -3,36 +3,13 @@ import { useState, useEffect } from "react";
 import CardEvent from "./CardEvent";
 import "../css/CityEvents.css"
 
-const accessUnsplashToken = import.meta.env.VITE_UNSPLASH_TOKEN
-
 const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, selectedCity, selectedCountry, loadCityEvents}) => {
-  
-  // Fetch unsplash images depending on the params
 
-  const [cityImage, setCityImage] = useState(null) 
-
-  useEffect(()=>{
-    if (loadCityEvents) {axios
-    .get(
-      `https://api.unsplash.com/search/photos?page=1&query=${selectedCity},${selectedCountry}`,
-      {
-        headers: {
-          'Authorization': accessUnsplashToken,
-        },
-      }
-    )
-    .then(res => res.data)
-    .then(data => {
-      setCityImage(data.results[0].urls);
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
-}, [])
 
   // Creation of a new table to  get a category table from the events of the city
-  const allCategories = [...new Set(cityEvents.map(cat => cat.category))];
+  const removeCat = ["public-holidays", "school-holidays", "observances"]
+  const eventCategories = [...new Set(cityEvents.map(cat => cat.category))];
+  const allCategories = eventCategories.filter(cat => !removeCat.includes(cat));
   // Filters depending on the category
   const handleFilter = (category) => {
     if (category === "Select All") {
@@ -44,17 +21,11 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
       setSelectedCat(category);
     }
   };
-  console.log(filteredCat)
-
- 
-
+  
+  console.log(selectedCountry);
   return (
   <div className='events-page'>
-    <div className="events-page-header" style={cityImage && {backgroundImage: `url("${cityImage.full}")`}}>
-      <div className="events-page-titles">
-      <h1>{selectedCity}</h1>
-      <h2>{selectedCountry}</h2>
-    </div>
+    <div className="events-page-header" >
       <div className="filter-btn-container">
         <button key="Select All"
           className="filter-btn"
@@ -73,7 +44,7 @@ const CityEvents = ({cityEvents, setFilteredCat, filteredCat, setSelectedCat, se
     
       <div className='events-cards-container'>
   
-      {loadCityEvents && filteredCat.map(event => {
+      {loadCityEvents && filteredCat.slice(0).reverse().map(event => {
       if (event.category !== "public-holidays" && event.category !== "school-holidays" && event.category !== "observances") {
         return (
         <CardEvent

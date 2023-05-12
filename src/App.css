@@ -137,21 +137,30 @@ html{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('./assets/images/pexels-jaime-reimer-2662116.jpg'), rgba(0, 0, 0, 0.25) ;
+  background-color: rgba(0, 0, 0, 0.25);
   background-position: center;
   background-size: cover;
   background-blend-mode: multiply;
   
 }
 
-.container{
-  width: 100%;
+
+.container-center, .container{
+  width: 100%; 
+  padding: 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap:2em;
 }
+.container-center{
+  position: relative;
+  top:-5em;
+  height: 100vh;
+}
+
+
 
 .home-page .title{
   display: flex;
