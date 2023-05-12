@@ -82,64 +82,68 @@ const SearchBar = ({
 
   return (
     <div className='search-bar'>
-        <div className="country-selection">
-            <div className="caption-container">
-                <BiMapPin />
-                <p className='caption'>Country</p>
-            </div>
-            <CountrySelect 
-                datas={countries} 
-                selectedCountry={selectedCountry}
-                setSelectedCountry={setSelectedCountry}
-                setAllCities={setAllCities}
-            />
-        </div>
-        <div className="city-selection">
-            <div className="caption-container">
-                <BiMapPin />
-                <p className='caption'>City</p>
-            </div>
-            <SearchField 
-                cityField={cityField} 
-                setCityField={setCityField} 
-                handlerCityValue={handlerCityValue} 
-            />
-            {citiesNames.length > 0 &&
-                <ul className='dropdown-menu'>
-                {citiesNames.map((city, index) =>(
-                    <li 
-                        key={index} 
-                        onClick={() => handlerCitySelect(city)}
-                    >
-                        {city}
-                    </li>
-                ))}
-                </ul>
-            }    
-        </div>
-        <div className="dates-selection">
-            <div className="caption-container">
-                <MdDateRange />
-                <p className='caption'>Arrival date</p>
-            </div>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker 
-                    sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
-                    onChange={handlerArrivalDate}
+        <div className="location-container">
+            <div className="country-selection">
+                <div className="caption-container">
+                    <BiMapPin />
+                    <p className='caption'>Country</p>
+                </div>
+                <CountrySelect
+                    datas={countries}
+                    selectedCountry={selectedCountry}
+                    setSelectedCountry={setSelectedCountry}
+                    setAllCities={setAllCities}
                 />
-            </LocalizationProvider>   
-        </div>
-        <div className="dates-selection">
-            <div className="caption-container">
-                <MdDateRange />
-                <p className='caption'>Return date</p>
             </div>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker 
-                    sx={{ width: 200, '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
-                    onChange={handlerReturnDate}
+            <div className="city-selection">
+                <div className="caption-container">
+                    <BiMapPin />
+                    <p className='caption'>City</p>
+                </div>
+                <SearchField
+                    cityField={cityField}
+                    setCityField={setCityField}
+                    handlerCityValue={handlerCityValue}
                 />
-            </LocalizationProvider>   
+                {citiesNames.length > 0 &&
+                    <ul className='dropdown-menu'>
+                    {citiesNames.map((city, index) =>(
+                        <li
+                            key={index}
+                            onClick={() => handlerCitySelect(city)}
+                        >
+                            {city}
+                        </li>
+                    ))}
+                    </ul>
+                }
+            </div>
+        </div>
+        <div className="dates-container">
+            <div className="dates-selection">
+                <div className="caption-container">
+                    <MdDateRange />
+                    <p className='caption'>Arrival date</p>
+                </div>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        sx={{ width: '100%', '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
+                        onChange={handlerArrivalDate}
+                    />
+                </LocalizationProvider>
+            </div>
+            <div className="dates-selection">
+                <div className="caption-container">
+                    <MdDateRange />
+                    <p className='caption'>Return date</p>
+                </div>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        sx={{ width: '100%', '& .MuiOutlinedInput-root': { backgroundColor: '#fff', color: '#999', fontSize: 14 }}}
+                        onChange={handlerReturnDate}
+                    />
+                </LocalizationProvider>
+            </div>
         </div>
     </div>
   )
