@@ -190,4 +190,8 @@ h2{
   .container{
     height: 100vh;
   }
+  h2{
+    text-align: center;
+    line-height: 1em;
+  }
 }

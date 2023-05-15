@@ -78,8 +78,6 @@ function App() {
     }  
   }, [load, location])
 
-  console.log(cityEvents)
-  console.log(typeof returnDate)
 
   //fetch images
   const [cityImage, setCityImage] = useState(null) 
