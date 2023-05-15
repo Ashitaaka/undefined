@@ -10,4 +10,4 @@ We used 3 API :
 - To display a background picture corresponding to the selected city
 - To display all the events happening in the selected city withing the selected date range
 
-Design : ©Ashitaaka - ©Ashitaaka, Elolecroco, Ericgdf - 2023
+Design : ©Ashitaaka - Development : ©Ashitaaka, Elolecroco, Ericgdf - 2023
