@@ -16,7 +16,7 @@ import { MdDateRange } from 'react-icons/md'
 import '.././css/SearchBar.css'
 import axios from 'axios'
 
-const accessCityToken = import.meta.env.VITE_CITIES_API_TOKEN
+const accessCityToken = process.env.VITE_CITIES_API_TOKEN
 
 const SearchBar = ({ 
     selectedCity,
