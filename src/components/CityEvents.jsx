@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import CardEvent from "./CardEvent";
 import "../css/CityEvents.css"
 

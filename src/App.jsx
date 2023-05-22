@@ -6,8 +6,8 @@ import axios from 'axios';
 import SearchBar from './components/SearchBar';
 import CityEvents from './components/CityEvents';
 
-const accessToken = process.env.VITE_API_TOKEN;
-const accessUnsplashToken = process.env.VITE_UNSPLASH_TOKEN;
+const accessToken = import.meta.env.VITE_API_TOKEN;
+const accessUnsplashToken = import.meta.env.VITE_UNSPLASH_TOKEN;
 
 
 function App() {
